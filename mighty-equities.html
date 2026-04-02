@@ -121,32 +121,27 @@
   .service-card:hover > p { color: rgba(255,255,255,0.6); }
   .service-num { font-family: 'Cormorant Garamond', serif; font-size: 5rem; color: rgba(201,169,110,0.1); font-weight: 300; display: block; line-height: 1; margin-bottom: -20px; margin-left: -5px; }
 
-  /* TEAM */
-  #team { background: var(--cream); padding: 120px 60px; }
-  .team-inner { max-width: 1300px; margin: 0 auto; }
-  .team-header { margin-bottom: 70px; }
-  .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--cream-dark); max-width: 900px; }
-  .team-card { background: var(--white); position: relative; overflow: hidden; }
-  .team-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--gold), var(--teal-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
-  .team-card:hover::after { transform: scaleX(1); }
-  .team-photo { aspect-ratio: 3/4; background: var(--teal-dark); position: relative; overflow: hidden; }
-  .team-monogram-wrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-  .team-monogram { font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: rgba(255,255,255,0.15); letter-spacing: 0.1em; }
-  .team-glow-a { position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(46,140,137,0.3), transparent 60%); }
-  .team-glow-b { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 80%, rgba(201,169,110,0.12), transparent 60%); }
-  .team-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(10,42,41,0.85) 100%); }
-  .team-name-bar { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
-  .team-name-bar h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; color: var(--white); line-height: 1.15; }
-  .team-name-bar .role { font-size: 0.52rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-top: 5px; display: block; }
-  .team-body { padding: 28px 28px 36px; border-top: 1px solid var(--cream-dark); }
-  .team-body p { font-size: 0.76rem; line-height: 1.9; color: var(--text-light); }
-  .team-body p + p { margin-top: 12px; }
-  .team-body .degree { font-style: italic; font-size: 0.7rem; margin-top: 12px; }
+  /* OFFICES */
+  #offices { background: var(--cream); padding: 120px 60px; }
+  .offices-inner { max-width: 1300px; margin: 0 auto; }
+  .offices-header { margin-bottom: 70px; }
+  .offices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--cream-dark); max-width: 1300px; }
+  .office-card { background: var(--white); position: relative; overflow: hidden; }
+  .office-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--gold), var(--teal-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+  .office-card:hover::after { transform: scaleX(1); }
+  .office-visual { aspect-ratio: 4/3; background: var(--teal-dark); position: relative; overflow: hidden; }
+  .office-monogram-wrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .office-monogram { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(255,255,255,0.12); letter-spacing: 0.15em; }
+  .office-glow-a { position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(46,140,137,0.3), transparent 60%); }
+  .office-glow-b { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 80%, rgba(201,169,110,0.12), transparent 60%); }
+  .office-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, rgba(10,42,41,0.85) 100%); }
+  .office-name-bar { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
+  .office-name-bar h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; color: var(--white); line-height: 1.15; }
+  .office-role { font-size: 0.52rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-top: 5px; display: block; }
+  .office-body { padding: 28px 28px 36px; border-top: 1px solid var(--cream-dark); }
+  .office-body p { font-size: 0.76rem; line-height: 1.9; color: var(--text-light); }
+  .office-icon-row { display: flex; align-items: center; gap: 8px; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--teal); text-transform: uppercase; margin-bottom: 14px; }
   .hl { color: var(--teal); font-weight: 500; }
-  .team-links { display: flex; gap: 14px; margin-top: 20px; flex-wrap: wrap; }
-  .tlink { display: flex; align-items: center; gap: 7px; font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(26,92,90,0.25); padding-bottom: 2px; transition: color 0.3s, border-color 0.3s; }
-  .tlink svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2; }
-  .tlink:hover { color: var(--gold); border-color: var(--gold); }
 
   /* PARTNERS */
   #partners { background: var(--white); padding: 120px 60px; }
@@ -242,11 +237,11 @@
     nav { padding: 24px 30px; }
     nav.scrolled { padding: 16px 30px; }
     .nav-links { display: none; }
-    .about-inner, .partners-inner, .contact-inner { grid-template-columns: 1fr; gap: 60px; }
+    .partners-inner { grid-template-columns: 1fr; gap: 60px; }
     .services-grid, .philosophy-stats, .portfolio-grid { grid-template-columns: 1fr; }
-    .team-grid { grid-template-columns: 1fr; max-width: 100%; }
+    .offices-grid { grid-template-columns: 1fr; }
     footer { padding: 40px 30px; }
-    #about, #philosophy, #services, #partners, #team, #contact { padding: 80px 30px; }
+    #philosophy, #services, #partners, #offices { padding: 80px 30px; }
   }
 </style>
 </head>
@@ -259,13 +254,10 @@
     <span class="sub">Equities</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
     <li><a href="#philosophy">Philosophy</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#offices">Offices</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Get in Touch</a>
 </nav>
 
 <!-- HERO -->
@@ -274,22 +266,26 @@
   <!-- CAROUSEL SLIDES -->
   <div class="carousel" id="carousel">
     <!-- Slide 1 — Lacure: luxury villa -->
-    <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1800&q=80');">
+    <div class="carousel-slide active" style="background-image: url('images/lacure.png');">
       <div class="carousel-caption">Lacure &mdash; Luxury Villas &amp; Private Escapes</div>
     </div>
     <!-- Slide 2 — Arrive / iCAT: logistics -->
-    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1800&q=80');">
+    <div class="carousel-slide" style="background-image: url('images/icat.png');">
       <div class="carousel-caption">iCAT Logistics &mdash; Customized Global Freight</div>
     </div>
-    <!-- Slide 3 — Nutrabolt: performance / energy -->
-    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1800&q=80');">
+    <!-- Slide 3 — Nutrabolt: gym interior wide -->
+    <div class="carousel-slide" style="background-image: url('images/nutrabolt-1.png');">
       <div class="carousel-caption">Nutrabolt &mdash; Sports Nutrition &amp; Wellness</div>
     </div>
-    <!-- Slide 4 — Arrive Logistics: city / movement -->
-    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1800&q=80');">
-      <div class="carousel-caption">Arrive Logistics &mdash; Freight &amp; Technology</div>
+    <!-- Slide 4 — Nutrabolt: gym hallway -->
+    <div class="carousel-slide" style="background-image: url('images/nutrabolt-2.png');">
+      <div class="carousel-caption">Nutrabolt &mdash; Sports Nutrition &amp; Wellness</div>
     </div>
-    <!-- Slide 5 — Family office / skyline -->
+    <!-- Slide 5 — Nutrabolt: aerial campus -->
+    <div class="carousel-slide" style="background-image: url('images/nutrabolt-3.png');">
+      <div class="carousel-caption">Nutrabolt &mdash; Sports Nutrition &amp; Wellness</div>
+    </div>
+    <!-- Slide 6 — Family office / skyline -->
     <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1468818419740-fb0f08ead8a2?w=1800&q=80');">
       <div class="carousel-caption">Mighty Equities &mdash; First Generation Family Office</div>
     </div>
@@ -312,6 +308,7 @@
     <button class="carousel-dot" onclick="goToSlide(2)"></button>
     <button class="carousel-dot" onclick="goToSlide(3)"></button>
     <button class="carousel-dot" onclick="goToSlide(4)"></button>
+    <button class="carousel-dot" onclick="goToSlide(5)"></button>
   </div>
 
   <!-- HERO CONTENT -->
@@ -321,8 +318,8 @@
     <div class="hero-rule"></div>
     <p class="hero-sub">Mighty Equities is a private family office dedicated to the disciplined stewardship of capital &mdash; managing investments, relationships, and legacy across generations.</p>
     <div class="hero-actions">
-      <a href="#about" class="btn-primary">Learn More</a>
-      <a href="#contact" class="btn-secondary">Contact Us</a>
+      <a href="#philosophy" class="btn-primary">Learn More</a>
+      <a href="#portfolio" class="btn-secondary">Our Portfolio</a>
     </div>
   </div>
 
@@ -332,47 +329,18 @@
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-inner">
-    <div class="about-visual">
-      <div class="about-box">
-        <div class="about-big-num">I</div>
-        <div class="about-badge">
-          <span class="num">Est.</span>
-          <span class="lbl">First Generation<br>Family Office</span>
-        </div>
-      </div>
-      <div class="about-offset"><span class="small">Private<br>&amp;<br>Independent</span></div>
-    </div>
-    <div class="about-content">
-      <span class="section-label">Who We Are</span>
-      <h2 class="section-title">Principled Capital.<br><em>Generational Vision.</em></h2>
-      <div class="rule"></div>
-      <p>Mighty Equities is a first-generation single family office, purpose-built to manage, protect, and grow private wealth with the same rigor and discipline that built it. We operate with full independence &mdash; no outside clients, no competing interests.</p>
-      <p>We believe that great wealth management begins with clarity: understanding what you own, why you own it, and where it needs to go. Our approach is direct, deliberate, and deeply personal.</p>
-      <div class="about-pillars">
-        <div class="pillar"><h4>Independence</h4><p>We answer to one family. Every decision aligns exclusively with our principals' long-term goals.</p></div>
-        <div class="pillar"><h4>Discipline</h4><p>A structured, process-driven approach to investment and governance across all asset classes.</p></div>
-        <div class="pillar"><h4>Transparency</h4><p>Complete visibility into every position, entity, and relationship under our stewardship.</p></div>
-        <div class="pillar"><h4>Legacy</h4><p>Building structures and habits today that serve the family for decades to come.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- PHILOSOPHY -->
 <section id="philosophy">
   <div class="philosophy-inner">
     <span class="section-label">Our Philosophy</span>
-    <h2 class="section-title">The Foundation<br><em>of Everything We Do</em></h2>
+    <h2 class="section-title">The Discipline<br><em>Behind Every Decision</em></h2>
     <div class="rule" style="margin:28px auto;"></div>
-    <blockquote class="philosophy-quote">Wealth is not a destination &mdash; it is an obligation to steward with care, foresight, and integrity.</blockquote>
-    <p class="philosophy-body">We approach capital allocation as a craft, not a formula. Markets change; principles do not. At Mighty Equities, every decision is evaluated through the lens of downside protection, long-term compounding, and the sustainability of structures that outlast any single market cycle.</p>
+    <blockquote class="philosophy-quote">Wealth is not a destination &mdash; it is a responsibility to preserve, compound, and steward with discipline and integrity.</blockquote>
+    <p class="philosophy-body">We approach capital allocation with patience and precision. Markets evolve, but discipline does not.<br>Every decision is grounded in downside protection, long-term compounding, and the belief that enduring value is built deliberately &mdash; not chased.</p>
     <div class="philosophy-stats">
-      <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Single Family Focus</span></div>
-      <div class="stat-item"><span class="stat-num">Long</span><span class="stat-label">Term Orientation</span></div>
-      <div class="stat-item"><span class="stat-num">Zero</span><span class="stat-label">Conflicts of Interest</span></div>
+      <div class="stat-item"><span class="stat-num">Single</span><span class="stat-label">Family Capital</span></div>
+      <div class="stat-item"><span class="stat-num">Long</span><span class="stat-label">Term Discipline</span></div>
+      <div class="stat-item"><span class="stat-num">Aligned</span><span class="stat-label">Interests, Always</span></div>
     </div>
   </div>
 </section>
@@ -386,7 +354,7 @@
         <span class="section-label">Investments &amp; Affiliations</span>
         <h2 class="section-title">Our <em>Portfolio</em></h2>
         <div class="rule"></div>
-        <p>A curated collection of companies, ventures, and affiliations that reflect the values and conviction behind every capital decision at Mighty Equities.</p>
+        <p>A curated collection of companies, ventures, and affiliations that reflect the values and conviction behind every capital decision at Mighty Equities. Mighty has a diversified approach, the world never stays still.</p>
       </div>
       <div class="portfolio-filters">
         <button class="pf-btn active" onclick="filterPortfolio('all', this)">All</button>
@@ -479,129 +447,80 @@
   </div>
 </section>
 
-<!-- TEAM -->
-<section id="team">
-  <div class="team-inner">
-    <div class="team-header">
-      <span class="section-label">The People</span>
-      <h2 class="section-title">Our <em>Team</em></h2>
+<!-- OFFICES -->
+<section id="offices">
+  <div class="offices-inner">
+    <div class="offices-header">
+      <span class="section-label">Where We Operate</span>
+      <h2 class="section-title">Our <em>Offices</em></h2>
       <div class="rule"></div>
-      <p style="font-size:0.82rem;line-height:2;color:var(--text-mid);max-width:540px;">A focused group of principals and advisors united by a shared commitment to excellence, integrity, and the long-term interests of the family.</p>
+      <p style="font-size:0.82rem;line-height:2;color:var(--text-mid);max-width:540px;">Strategically located across Texas, our offices position us at the center of the state's most dynamic markets.</p>
     </div>
-    <div class="team-grid" style="grid-template-columns: repeat(3,1fr); max-width:1300px;">
+    <div class="offices-grid">
 
-      <!-- Manish Patel -->
-      <div class="team-card">
-        <div class="team-photo">
-          <div class="team-monogram-wrap"><span class="team-monogram">MP</span></div>
-          <div class="team-glow-a"></div>
-          <div class="team-glow-b"></div>
-          <div class="team-overlay"></div>
-          <div class="team-name-bar">
-            <h3>Manish Patel</h3>
-            <span class="role">Founder</span>
+      <!-- Houston -->
+      <div class="office-card">
+        <div class="office-visual">
+          <div class="office-monogram-wrap"><span class="office-monogram">HOU</span></div>
+          <div class="office-glow-a"></div>
+          <div class="office-glow-b"></div>
+          <div class="office-overlay"></div>
+          <div class="office-name-bar">
+            <h3>Houston</h3>
+            <span class="office-role">Headquarters</span>
           </div>
         </div>
-        <div class="team-body">
-          <p>Entrepreneur and investor with a passion for building dynamic teams that solve complex problems and unlock transformational value.</p>
-          <p>Co-Founder and former President of <span class="hl">Nutrabolt Life Sciences</span> &mdash; whose products are sold in 50,000+ retail locations across 120+ countries, including Costco, Walmart, and Amazon. Capital Co-Founder of <span class="hl">Arrive Logistics</span>.</p>
-          <p>Former consultant and investor in commercial and residential real estate with over <span class="hl">$5 billion</span> in acquisition, development, and portfolio assignments completed since 2005.</p>
-          <p class="degree">B.S. Finance &mdash; The University of Texas at Austin</p>
-          <div class="team-links">
-            <a href="https://www.linkedin.com/company/mighty-equities/people/" target="_blank" class="tlink">
-              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-              LinkedIn
-            </a>
+        <div class="office-body">
+          <div class="office-icon-row">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--gold)" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Houston, Texas</span>
           </div>
+          <p>Home to our principal operations and the strategic center of Mighty Equities. Houston serves as the primary hub for investment management, portfolio oversight, and family office administration.</p>
         </div>
       </div>
 
-      <!-- David Dart -->
-      <div class="team-card">
-        <div class="team-photo" style="background:#153635;">
-          <div class="team-monogram-wrap"><span class="team-monogram">DD</span></div>
-          <div class="team-glow-a" style="background:radial-gradient(ellipse at 30% 30%,rgba(201,169,110,0.2),transparent 60%);"></div>
-          <div class="team-glow-b"></div>
-          <div class="team-overlay"></div>
-          <div class="team-name-bar">
-            <h3>David Dart, CPA</h3>
-            <span class="role">Managing Partner</span>
+      <!-- Austin -->
+      <div class="office-card">
+        <div class="office-visual" style="background:#153635;">
+          <div class="office-monogram-wrap"><span class="office-monogram">ATX</span></div>
+          <div class="office-glow-a" style="background:radial-gradient(ellipse at 30% 30%,rgba(201,169,110,0.2),transparent 60%);"></div>
+          <div class="office-glow-b"></div>
+          <div class="office-overlay"></div>
+          <div class="office-name-bar">
+            <h3>Austin</h3>
+            <span class="office-role">Office</span>
           </div>
         </div>
-        <div class="team-body">
-          <p>A seasoned CPA and financial strategist with deep expertise spanning venture, tax, and complex investment structures. David leads back-office operations through <span class="hl">Dart Advisory</span>, ensuring every entity and account is managed with institutional precision.</p>
-          <p>Specialties include multi-entity consolidations, private equity structures, investor relations, system integration, and comprehensive accounting and reporting packages.</p>
-          <div class="team-links">
-            <a href="https://www.dartadvisors.com" target="_blank" class="tlink">
-              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              dartadvisors.com
-            </a>
-            <a href="https://www.linkedin.com/company/mighty-equities/people/" target="_blank" class="tlink">
-              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-              LinkedIn
-            </a>
+        <div class="office-body">
+          <div class="office-icon-row">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--gold)" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Austin, Texas</span>
           </div>
+          <p>Positioned in one of the nation's fastest-growing innovation and technology corridors, our Austin presence connects the firm to venture, real estate, and entrepreneurial opportunities across Central Texas.</p>
         </div>
       </div>
 
-      <!-- Grant Jungeblut -->
-      <div class="team-card">
-        <div class="team-photo" style="background:#112e2d;">
-          <div class="team-monogram-wrap"><span class="team-monogram">GJ</span></div>
-          <div class="team-glow-a" style="background:radial-gradient(ellipse at 60% 20%,rgba(201,169,110,0.18),transparent 60%);"></div>
-          <div class="team-glow-b" style="background:radial-gradient(ellipse at 30% 80%,rgba(46,140,137,0.2),transparent 60%);"></div>
-          <div class="team-overlay"></div>
-          <div class="team-name-bar">
-            <h3>Grant Jungeblut</h3>
-            <span class="role">Director</span>
+      <!-- Dallas -->
+      <div class="office-card">
+        <div class="office-visual" style="background:#112e2d;">
+          <div class="office-monogram-wrap"><span class="office-monogram">DFW</span></div>
+          <div class="office-glow-a" style="background:radial-gradient(ellipse at 60% 20%,rgba(201,169,110,0.18),transparent 60%);"></div>
+          <div class="office-glow-b" style="background:radial-gradient(ellipse at 30% 80%,rgba(46,140,137,0.2),transparent 60%);"></div>
+          <div class="office-overlay"></div>
+          <div class="office-name-bar">
+            <h3>Dallas</h3>
+            <span class="office-role">Office</span>
           </div>
         </div>
-        <div class="team-body">
-          <p>Director at Mighty Equities, contributing to the firm's investment activities, portfolio oversight, and operational initiatives across the family office platform.</p>
-          <p style="margin-top:12px;font-style:italic;font-size:0.72rem;color:var(--text-light);">Full bio coming soon.</p>
-          <div class="team-links">
-            <a href="https://www.linkedin.com/in/grant-jungeblut-35412b40/" target="_blank" class="tlink">
-              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-              LinkedIn
-            </a>
+        <div class="office-body">
+          <div class="office-icon-row">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--gold)" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Dallas, Texas</span>
           </div>
+          <p>Our Dallas office extends the firm's reach into the North Texas market, providing access to corporate partnerships, real estate development, and a deep network of institutional relationships.</p>
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-inner">
-    <div class="contact-left">
-      <span class="section-label">Get in Touch</span>
-      <h2 class="section-title">Begin a<br><em>Conversation</em></h2>
-      <div class="rule"></div>
-      <p>Mighty Equities values thoughtful, deliberate introductions. Whether you are an advisor, prospective partner, or someone seeking to learn more, we welcome the conversation.</p>
-      <p style="font-size:0.82rem;line-height:2;color:rgba(255,255,255,0.6);margin-top:16px;">All inquiries are kept strictly confidential.</p>
-    </div>
-    <div class="contact-form">
-      <div class="form-row">
-        <div class="form-group"><label>First Name</label><input type="text" placeholder="John"></div>
-        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
-      </div>
-      <div class="form-group"><label>Email Address</label><input type="email" placeholder="john@example.com"></div>
-      <div class="form-group"><label>Organization</label><input type="text" placeholder="Company or Firm Name"></div>
-      <div class="form-group">
-        <label>Nature of Inquiry</label>
-        <select>
-          <option value="">Select one...</option>
-          <option>Advisory / Partnership</option>
-          <option>Investment Opportunity</option>
-          <option>Service Provider</option>
-          <option>General Inquiry</option>
-        </select>
-      </div>
-      <div class="form-group"><label>Message</label><textarea placeholder="Tell us about yourself and the nature of your inquiry..."></textarea></div>
-      <button class="btn-submit" id="submitBtn">Send Message</button>
-      <p id="confirm" style="display:none;font-size:0.72rem;color:var(--gold-light);margin-top:10px;">Thank you. We will be in touch shortly.</p>
     </div>
   </div>
 </section>
@@ -617,10 +536,9 @@
     <p style="margin-top:4px;">Private Family Office &mdash; Not a Registered Investment Adviser</p>
   </div>
   <ul class="footer-links">
-    <li><a href="#about">About</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#offices">Offices</a></li>
   </ul>
 </footer>
 
@@ -671,12 +589,7 @@
     });
   }
 
-  // Contact form
-  document.getElementById('submitBtn').addEventListener('click', function() {
-    this.textContent = 'Message Sent';
-    this.style.background = 'var(--teal-light)';
-    document.getElementById('confirm').style.display = 'block';
-  });
+
 </script>
 </body>
 </html>
