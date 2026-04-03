@@ -43,7 +43,7 @@
   .carousel-slide.active { opacity: 1; }
   .carousel-slide::after { content: ''; position: absolute; inset: 0; background: rgba(8,28,27,0.52); backdrop-filter: blur(2px); }
   .carousel-caption { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 2; font-size: 0.52rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.45); white-space: nowrap; }
-  .carousel-dots { position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 3; }
+  .carousel-dots { position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 3; }
   .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; padding: 0; transition: background 0.3s, transform 0.3s; }
   .carousel-dot.active { background: var(--gold); transform: scale(1.4); }
   .carousel-arrows { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 30px; z-index: 3; pointer-events: none; }
@@ -129,12 +129,13 @@
   .office-card { background: var(--white); position: relative; overflow: hidden; }
   .office-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--gold), var(--teal-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
   .office-card:hover::after { transform: scaleX(1); }
-  .office-visual { aspect-ratio: 4/3; background: var(--teal-dark); position: relative; overflow: hidden; }
+  .office-visual { aspect-ratio: 4/3; background: var(--teal-dark); position: relative; overflow: hidden; background-size: cover; background-position: center; }
   .office-monogram-wrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
   .office-monogram { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(255,255,255,0.12); letter-spacing: 0.15em; }
-  .office-glow-a { position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(46,140,137,0.3), transparent 60%); }
-  .office-glow-b { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 80%, rgba(201,169,110,0.12), transparent 60%); }
-  .office-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, rgba(10,42,41,0.85) 100%); }
+  .office-glow-a { position: absolute; inset: 0; }
+  .office-glow-b { position: absolute; inset: 0; }
+  .office-tint { position: absolute; inset: 0; background: rgba(15,61,59,0.18); }
+  .office-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 0%, rgba(10,42,41,0.8) 85%); }
   .office-name-bar { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
   .office-name-bar h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; color: var(--white); line-height: 1.15; }
   .office-role { font-size: 0.52rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-top: 5px; display: block; }
@@ -314,9 +315,9 @@
   <!-- HERO CONTENT -->
   <div class="hero-inner">
     <p class="hero-eyebrow">First Generation Family Office</p>
-    <h1 class="hero-title">Building <em>Enduring</em><br>Wealth, Purposefully</h1>
+    <h1 class="hero-title">Advancing <em>Purpose</em><br>Through Agile Capital</h1>
     <div class="hero-rule"></div>
-    <p class="hero-sub">Mighty Equities is a private family office dedicated to the disciplined stewardship of capital &mdash; managing investments, relationships, and legacy across generations.</p>
+    <p class="hero-sub">Mighty Equities is a family-controlled evergreen fund founded in Austin, TX and built for agility. We invest across all asset classes and stages to catalyze our members' capital, turning financial resources into the fuel for their true life objectives.</p>
     <div class="hero-actions">
       <a href="#philosophy" class="btn-primary">Learn More</a>
       <a href="#portfolio" class="btn-secondary">Our Portfolio</a>
@@ -324,7 +325,6 @@
   </div>
 
   <div class="hero-scroll">
-    <span>Scroll</span>
     <div class="scroll-line"></div>
   </div>
 </section>
@@ -333,10 +333,10 @@
 <section id="philosophy">
   <div class="philosophy-inner">
     <span class="section-label">Our Philosophy</span>
-    <h2 class="section-title">The Discipline<br><em>Behind Every Decision</em></h2>
+    <h2 class="section-title">Converting Financial Resources<br><em>into Life Objectives.</em></h2>
     <div class="rule" style="margin:28px auto;"></div>
-    <blockquote class="philosophy-quote">Wealth is not a destination &mdash; it is a responsibility to preserve, compound, and steward with discipline and integrity.</blockquote>
-    <p class="philosophy-body">We approach capital allocation with patience and precision. Markets evolve, but discipline does not.<br>Every decision is grounded in downside protection, long-term compounding, and the belief that enduring value is built deliberately &mdash; not chased.</p>
+    <blockquote class="philosophy-quote">We see money as more than a metric &mdash; it's a bridge between the value you've created and the future you're building.</blockquote>
+    <p class="philosophy-body">At Mighty, we see money as more than a metric &mdash; it's a bridge between the value you've created and the future you're building. While capital is essential, we know that people, places, and purpose are the real drivers of success.<br><br>Mighty Equities is a family-controlled evergreen fund built for agility. We invest across all asset classes and stages to catalyze our members' capital, turning financial resources into the fuel for their true life objectives.</p>
     <div class="philosophy-stats">
       <div class="stat-item"><span class="stat-num">Single</span><span class="stat-label">Family Capital</span></div>
       <div class="stat-item"><span class="stat-num">Long</span><span class="stat-label">Term Discipline</span></div>
@@ -436,13 +436,6 @@
         <p class="pc-desc">Placeholder for an upcoming venture position. This card will be updated with company details and investment thesis.</p>
       </div>
 
-      <div class="portfolio-card placeholder" data-category="operating">
-        <div class="pc-placeholder-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-        <div class="pc-name" style="color:rgba(255,255,255,0.3);">Coming Soon</div>
-        <div class="pc-sector">Operating Company</div>
-        <p class="pc-desc">Placeholder for an operating company affiliation. Details to be confirmed and added at a later stage.</p>
-      </div>
-
     </div>
   </div>
 </section>
@@ -458,66 +451,39 @@
     </div>
     <div class="offices-grid">
 
-      <!-- Houston -->
-      <div class="office-card">
-        <div class="office-visual">
-          <div class="office-monogram-wrap"><span class="office-monogram">HOU</span></div>
-          <div class="office-glow-a"></div>
-          <div class="office-glow-b"></div>
-          <div class="office-overlay"></div>
-          <div class="office-name-bar">
-            <h3>Houston</h3>
-            <span class="office-role">Headquarters</span>
-          </div>
-        </div>
-        <div class="office-body">
-          <div class="office-icon-row">
-            <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--gold)" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Houston, Texas</span>
-          </div>
-          <p>Home to our principal operations and the strategic center of Mighty Equities. Houston serves as the primary hub for investment management, portfolio oversight, and family office administration.</p>
-        </div>
-      </div>
-
       <!-- Austin -->
       <div class="office-card">
-        <div class="office-visual" style="background:#153635;">
-          <div class="office-monogram-wrap"><span class="office-monogram">ATX</span></div>
-          <div class="office-glow-a" style="background:radial-gradient(ellipse at 30% 30%,rgba(201,169,110,0.2),transparent 60%);"></div>
-          <div class="office-glow-b"></div>
+        <div class="office-visual" style="background-image: url('images/map-austin.png'); background-position: center 48%;">
+          <div class="office-tint"></div>
           <div class="office-overlay"></div>
           <div class="office-name-bar">
-            <h3>Austin</h3>
-            <span class="office-role">Office</span>
+            <h3>Austin, TX</h3>
+            <span class="office-role">Lost Creek</span>
           </div>
-        </div>
-        <div class="office-body">
-          <div class="office-icon-row">
-            <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--gold)" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Austin, Texas</span>
-          </div>
-          <p>Positioned in one of the nation's fastest-growing innovation and technology corridors, our Austin presence connects the firm to venture, real estate, and entrepreneurial opportunities across Central Texas.</p>
         </div>
       </div>
 
       <!-- Dallas -->
       <div class="office-card">
-        <div class="office-visual" style="background:#112e2d;">
-          <div class="office-monogram-wrap"><span class="office-monogram">DFW</span></div>
-          <div class="office-glow-a" style="background:radial-gradient(ellipse at 60% 20%,rgba(201,169,110,0.18),transparent 60%);"></div>
-          <div class="office-glow-b" style="background:radial-gradient(ellipse at 30% 80%,rgba(46,140,137,0.2),transparent 60%);"></div>
+        <div class="office-visual" style="background-image: url('images/map-dallas.png'); background-position: center 48%;">
+          <div class="office-tint"></div>
           <div class="office-overlay"></div>
           <div class="office-name-bar">
-            <h3>Dallas</h3>
-            <span class="office-role">Office</span>
+            <h3>Dallas, TX</h3>
+            <span class="office-role">Highland Park</span>
           </div>
         </div>
-        <div class="office-body">
-          <div class="office-icon-row">
-            <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--gold)" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Dallas, Texas</span>
+      </div>
+
+      <!-- Houston -->
+      <div class="office-card">
+        <div class="office-visual" style="background-image: url('images/map-houston.png'); background-position: center 47%;">
+          <div class="office-tint"></div>
+          <div class="office-overlay"></div>
+          <div class="office-name-bar">
+            <h3>Houston, TX</h3>
+            <span class="office-role">Montrose</span>
           </div>
-          <p>Our Dallas office extends the firm's reach into the North Texas market, providing access to corporate partnerships, real estate development, and a deep network of institutional relationships.</p>
         </div>
       </div>
 
