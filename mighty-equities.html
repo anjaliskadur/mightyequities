@@ -100,6 +100,7 @@
   .philosophy-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
   .philosophy-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 3vw, 2.6rem); font-style: italic; font-weight: 300; line-height: 1.5; color: rgba(255,255,255,0.85); margin: 40px 0; }
   .philosophy-quote::before { content: '\201C'; color: var(--gold); font-size: 5rem; line-height: 0; vertical-align: -1.5rem; margin-right: 8px; }
+  .philosophy-quote::after { content: '\201D'; color: var(--gold); font-size: 5rem; line-height: 0; vertical-align: -1.5rem; margin-left: 8px; }
   .philosophy-body { font-size: 0.92rem; line-height: 2.1; color: rgba(255,255,255,0.6); margin-top: 30px; }
   .philosophy-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); margin-top: 80px; }
   .stat-item { background: var(--teal-dark); padding: 50px 30px; text-align: center; }
@@ -129,13 +130,14 @@
   .office-card { background: var(--white); position: relative; overflow: hidden; }
   .office-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--gold), var(--teal-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
   .office-card:hover::after { transform: scaleX(1); }
-  .office-visual { aspect-ratio: 4/3; background: var(--teal-dark); position: relative; overflow: hidden; background-size: cover; background-position: center; }
+  .office-visual { aspect-ratio: 4/3; background: var(--teal-dark); position: relative; overflow: hidden; }
+  .office-map-img { position: absolute; inset: -15%; width: 130%; height: 130%; background-size: cover; background-position: center; filter: grayscale(100%); }
   .office-monogram-wrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
   .office-monogram { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(255,255,255,0.12); letter-spacing: 0.15em; }
   .office-glow-a { position: absolute; inset: 0; }
   .office-glow-b { position: absolute; inset: 0; }
-  .office-tint { position: absolute; inset: 0; background: rgba(15,61,59,0.18); }
-  .office-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 0%, rgba(10,42,41,0.8) 85%); }
+  .office-tint { position: absolute; inset: 0; background: rgba(15,61,59,0.06); }
+  .office-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 0%, rgba(10,42,41,0.65) 90%); }
   .office-name-bar { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
   .office-name-bar h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 400; color: var(--white); line-height: 1.15; }
   .office-role { font-size: 0.52rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-top: 5px; display: block; }
@@ -266,17 +268,21 @@
 
   <!-- CAROUSEL SLIDES -->
   <div class="carousel" id="carousel">
-    <!-- Slide 1 — Lacure: luxury villa -->
-    <div class="carousel-slide active" style="background-image: url('images/lacure.png');">
+    <!-- Slide 1 — Bar Snack (Middlehouse) -->
+    <div class="carousel-slide active" style="background-image: url('images/barsnack.png');">
+      <div class="carousel-caption">Middlehouse &mdash; Bar Snack</div>
+    </div>
+    <!-- Slide 2 — Lacure: luxury villa -->
+    <div class="carousel-slide" style="background-image: url('images/lacure.png');">
       <div class="carousel-caption">Lacure &mdash; Luxury Villas &amp; Private Escapes</div>
     </div>
-    <!-- Slide 2 — Arrive / iCAT: logistics -->
+    <!-- Slide 3 — Arrive Logistics -->
+    <div class="carousel-slide" style="background-image: url('images/arrive.png');">
+      <div class="carousel-caption">Arrive Logistics &mdash; Freight &amp; Technology</div>
+    </div>
+    <!-- Slide 4 — iCAT: logistics -->
     <div class="carousel-slide" style="background-image: url('images/icat.png');">
       <div class="carousel-caption">iCAT Logistics &mdash; Customized Global Freight</div>
-    </div>
-    <!-- Slide 3 — Nutrabolt: gym interior wide -->
-    <div class="carousel-slide" style="background-image: url('images/nutrabolt-1.png');">
-      <div class="carousel-caption">Nutrabolt &mdash; Sports Nutrition &amp; Wellness</div>
     </div>
     <!-- Slide 4 — Nutrabolt: gym hallway -->
     <div class="carousel-slide" style="background-image: url('images/nutrabolt-2.png');">
@@ -288,7 +294,7 @@
     </div>
     <!-- Slide 6 — Family office / skyline -->
     <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1468818419740-fb0f08ead8a2?w=1800&q=80');">
-      <div class="carousel-caption">Mighty Equities &mdash; First Generation Family Office</div>
+      <div class="carousel-caption">Mighty Equities</div>
     </div>
   </div>
 
@@ -310,14 +316,15 @@
     <button class="carousel-dot" onclick="goToSlide(3)"></button>
     <button class="carousel-dot" onclick="goToSlide(4)"></button>
     <button class="carousel-dot" onclick="goToSlide(5)"></button>
+    <button class="carousel-dot" onclick="goToSlide(6)"></button>
   </div>
 
   <!-- HERO CONTENT -->
   <div class="hero-inner">
-    <p class="hero-eyebrow">First Generation Family Office</p>
+    <p class="hero-eyebrow">Evergreen Fund and Family Office</p>
     <h1 class="hero-title">Seeking the <em>Relentless</em></h1>
     <div class="hero-rule"></div>
-    <p class="hero-sub">Mighty Equities is an Austin-based evergreen fund and family office. We partner with like-minded family capital to pursue direct investments, specifically backing dogged founders across various asset classes and stages.</p>
+    <p class="hero-sub">And partnering with the non-conforming overachievers who want to change their world.</p>
     <div class="hero-actions">
       <a href="#philosophy" class="btn-primary">Learn More</a>
       <a href="#portfolio" class="btn-secondary">Our Portfolio</a>
@@ -333,10 +340,11 @@
 <section id="philosophy">
   <div class="philosophy-inner">
     <span class="section-label">Our Philosophy</span>
-    <h2 class="section-title">Converting Financial Resources<br><em>into Life Objectives.</em></h2>
+    <h2 class="section-title">Advancing <em>Purpose</em><br>through Agile Capital</h2>
     <div class="rule" style="margin:28px auto;"></div>
-    <blockquote class="philosophy-quote">We see money as more than a metric &mdash; it's a bridge between the value you've created and the future you're building.</blockquote>
-    <p class="philosophy-body">We view capital as a bridge &mdash; the practical span between the value you have already secured and the future you are now constructing. Capital fuels ideas, but strong discipline toward a purposeful strategy, coupled with a relentless focus on solving complex problems, drives the creation of enduring value.<br><br>Mighty Equities is a family-controlled evergreen fund built for agility. We invest across all asset classes and stages to catalyze our members' capital, turning financial resources into the fuel for their true life objectives.</p>
+    <blockquote class="philosophy-quote">We view capital as a bridge &mdash; the practical span between the value already secured and the future now constructing.</blockquote>
+    <p class="philosophy-body">Capital fuels ideas, but strong discipline toward a purposeful strategy, coupled with a relentless focus on solving complex problems, drives the creation of enduring value.</p>
+    <p class="philosophy-body" style="margin-top:20px;">Mighty Equities is an Austin-based evergreen fund and family office. We partner with like-minded family capital to pursue direct investments, specifically backing dogged founders across various asset classes and stages.</p>
   </div>
 </section>
 
@@ -353,24 +361,24 @@
       </div>
       <div class="portfolio-filters">
         <button class="pf-btn active" onclick="filterPortfolio('all', this)">All</button>
-        <button class="pf-btn" onclick="filterPortfolio('operating', this)">Operating</button>
+        <button class="pf-btn" onclick="filterPortfolio('private-equity', this)">Private Equity</button>
         <button class="pf-btn" onclick="filterPortfolio('venture', this)">Venture</button>
         <button class="pf-btn" onclick="filterPortfolio('real-estate', this)">Real Estate</button>
-        <button class="pf-btn" onclick="filterPortfolio('affiliated', this)">Affiliated</button>
+        <button class="pf-btn" onclick="filterPortfolio('other', this)">Other</button>
       </div>
     </div>
 
     <div class="portfolio-grid" id="portfolioGrid">
 
       <!-- CARD 1 — Nutrabolt -->
-      <div class="portfolio-card" data-category="operating">
-        <span class="pc-tag">Operating Company</span>
+      <div class="portfolio-card" data-category="private-equity">
+        <span class="pc-tag">Private Equity</span>
         <div class="pc-logo-area"><span>NB</span></div>
         <div class="pc-name">Nutrabolt</div>
         <div class="pc-sector">Sports Nutrition &amp; Wellness</div>
         <p class="pc-desc">Leading nutritional life sciences company behind the Cellucor and Extend brands. Products sold in 50,000+ retail locations across 120+ countries including Costco, Walmart, and Amazon.</p>
         <div class="pc-meta">
-          <div class="pc-meta-item"><div class="pc-meta-label">Role</div><div class="pc-meta-value">Co-Founder &amp; Former President</div></div>
+          <div class="pc-meta-item"><div class="pc-meta-label">Website</div><div class="pc-meta-value"><a href="https://nutrabolt.com" target="_blank" style="color:var(--gold-light);text-decoration:none;">nutrabolt.com</a></div></div>
           <div class="pc-meta-item"><div class="pc-meta-label">Status</div><div class="pc-meta-value">Active</div></div>
         </div>
       </div>
@@ -383,7 +391,7 @@
         <div class="pc-sector">Freight &amp; Logistics Technology</div>
         <p class="pc-desc">Technology-driven freight brokerage and logistics platform. One of the fastest-growing logistics companies in the United States.</p>
         <div class="pc-meta">
-          <div class="pc-meta-item"><div class="pc-meta-label">Role</div><div class="pc-meta-value">Capital Co-Founder</div></div>
+          <div class="pc-meta-item"><div class="pc-meta-label">Website</div><div class="pc-meta-value"><a href="https://arrivelogistics.com" target="_blank" style="color:var(--gold-light);text-decoration:none;">arrivelogistics.com</a></div></div>
           <div class="pc-meta-item"><div class="pc-meta-label">Status</div><div class="pc-meta-value">Active</div></div>
         </div>
       </div>
@@ -391,8 +399,8 @@
 
 
       <!-- CARD 4 — iCAT Logistics -->
-      <div class="portfolio-card" data-category="venture">
-        <span class="pc-tag">Venture</span>
+      <div class="portfolio-card" data-category="private-equity">
+        <span class="pc-tag">Private Equity</span>
         <div class="pc-logo-area"><span>iCAT</span></div>
         <div class="pc-name">iCAT Logistics</div>
         <div class="pc-sector">Customized Freight &amp; Global Logistics</div>
@@ -404,8 +412,8 @@
       </div>
 
       <!-- CARD 5 — Lacure -->
-      <div class="portfolio-card" data-category="venture">
-        <span class="pc-tag">Venture</span>
+      <div class="portfolio-card" data-category="private-equity">
+        <span class="pc-tag">Private Equity</span>
         <div class="pc-logo-area"><span>LC</span></div>
         <div class="pc-name">Lacure</div>
         <div class="pc-sector">Luxury Villa &amp; Vacation Rentals</div>
@@ -416,19 +424,30 @@
         </div>
       </div>
 
-      <!-- PLACEHOLDER CARDS — to be filled in -->
-      <div class="portfolio-card placeholder" data-category="real-estate">
-        <div class="pc-placeholder-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-        <div class="pc-name" style="color:rgba(255,255,255,0.3);">Coming Soon</div>
-        <div class="pc-sector">Real Estate</div>
-        <p class="pc-desc">This position will be added as the portfolio is formalized. Real estate investments and development projects.</p>
+      <!-- CARD 6 — Middlehouse -->
+      <div class="portfolio-card" data-category="other">
+        <span class="pc-tag">Other</span>
+        <div class="pc-logo-area"><span>MH</span></div>
+        <div class="pc-name">Middlehouse</div>
+        <div class="pc-sector">Hospitality &amp; Venue Management</div>
+        <p class="pc-desc">Hospitality platform investing in industry pioneers who own and run world-class venues. Portfolio includes Bar Snack, Here Nor There, In Plain Sight, Kagano, and Mrs. Jones.</p>
+        <div class="pc-meta">
+          <div class="pc-meta-item"><div class="pc-meta-label">Website</div><div class="pc-meta-value"><a href="https://middlehouse.host" target="_blank" style="color:var(--gold-light);text-decoration:none;">middlehouse.host</a></div></div>
+          <div class="pc-meta-item"><div class="pc-meta-label">Status</div><div class="pc-meta-value">Active</div></div>
+        </div>
       </div>
 
-      <div class="portfolio-card placeholder" data-category="venture">
-        <div class="pc-placeholder-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
-        <div class="pc-name" style="color:rgba(255,255,255,0.3);">Coming Soon</div>
-        <div class="pc-sector">Venture Investment</div>
-        <p class="pc-desc">Placeholder for an upcoming venture position. This card will be updated with company details and investment thesis.</p>
+      <!-- CARD 7 — Truckbays -->
+      <div class="portfolio-card" data-category="venture">
+        <span class="pc-tag">Venture</span>
+        <div class="pc-logo-area"><span>TB</span></div>
+        <div class="pc-name">Truckbays</div>
+        <div class="pc-sector">Trucking &amp; Logistics Services</div>
+        <p class="pc-desc">Service and infrastructure platform supporting the commercial trucking industry with maintenance bays and fleet support solutions.</p>
+        <div class="pc-meta">
+          <div class="pc-meta-item"><div class="pc-meta-label">Website</div><div class="pc-meta-value"><a href="https://truckbays.com" target="_blank" style="color:var(--gold-light);text-decoration:none;">truckbays.com</a></div></div>
+          <div class="pc-meta-item"><div class="pc-meta-label">Status</div><div class="pc-meta-value">Active</div></div>
+        </div>
       </div>
 
     </div>
@@ -442,13 +461,13 @@
       <span class="section-label">Where We Operate</span>
       <h2 class="section-title">Our <em>Offices</em></h2>
       <div class="rule"></div>
-      <p style="font-size:0.82rem;line-height:2;color:var(--text-mid);max-width:540px;">Strategically located across Texas, our offices position us at the center of the state's most dynamic markets.</p>
     </div>
     <div class="offices-grid">
 
       <!-- Austin -->
       <div class="office-card">
-        <div class="office-visual" style="background-image: url('images/map-austin.png'); background-position: center 48%;">
+        <div class="office-visual">
+          <div class="office-map-img" style="background-image: url('images/map-austin.png'); background-position: center 48%;"></div>
           <div class="office-tint"></div>
           <div class="office-overlay"></div>
           <div class="office-name-bar">
@@ -460,7 +479,8 @@
 
       <!-- Dallas -->
       <div class="office-card">
-        <div class="office-visual" style="background-image: url('images/map-dallas.png'); background-position: center 48%;">
+        <div class="office-visual">
+          <div class="office-map-img" style="background-image: url('images/map-dallas.png'); background-position: center 48%;"></div>
           <div class="office-tint"></div>
           <div class="office-overlay"></div>
           <div class="office-name-bar">
@@ -472,7 +492,8 @@
 
       <!-- Houston -->
       <div class="office-card">
-        <div class="office-visual" style="background-image: url('images/map-houston.png'); background-position: center 47%;">
+        <div class="office-visual">
+          <div class="office-map-img" style="background-image: url('images/map-houston.png'); background-position: center 47%;"></div>
           <div class="office-tint"></div>
           <div class="office-overlay"></div>
           <div class="office-name-bar">
@@ -525,7 +546,7 @@
   }
 
   function startAutoplay() {
-    autoplayTimer = setInterval(function() { goToSlide(currentSlide + 1); }, 5000);
+    autoplayTimer = setInterval(function() { goToSlide(currentSlide + 1); }, 10000);
   }
 
   startAutoplay();
