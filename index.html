@@ -4,6 +4,16 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mighty Equities — Family Office</title>
+<meta name="description" content="Mighty Equities is an Austin-based evergreen fund and family office partnering with dogged founders across asset classes and stages." />
+<link rel="canonical" href="https://mightyequities.com/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://mightyequities.com/" />
+<meta property="og:title" content="Mighty Equities — Family Office" />
+<meta property="og:description" content="Seeking the Relentless. An evergreen fund and family office partnering with non-conforming overachievers." />
+<meta property="og:site_name" content="Mighty Equities" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Mighty Equities — Family Office" />
+<meta name="twitter:description" content="Seeking the Relentless. An evergreen fund and family office partnering with non-conforming overachievers." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -24,6 +34,9 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { font-family: 'Montserrat', sans-serif; background: var(--white); color: var(--text-dark); overflow-x: hidden; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 28px 60px; transition: background 0.4s, padding 0.4s, box-shadow 0.4s; }
@@ -38,10 +51,20 @@
   .nav-cta:hover { background: var(--gold); color: var(--teal-dark); }
 
   /* HERO CAROUSEL */
-  .carousel { position: absolute; inset: 0; z-index: 0; }
-  .carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s ease; background-size: cover; background-position: center; }
-  .carousel-slide.active { opacity: 1; }
-  .carousel-slide::after { content: ''; position: absolute; inset: 0; background: rgba(8,28,27,0.52); backdrop-filter: blur(2px); }
+  .carousel { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .carousel-slide {
+    position: absolute; inset: 0; opacity: 0; z-index: 0;
+    transform: translateX(0);
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.7s ease;
+    background-size: cover; background-position: center;
+    pointer-events: none; will-change: transform, opacity;
+  }
+  .carousel-slide.active { opacity: 1; z-index: 1; transform: translateX(0); pointer-events: auto; }
+  .carousel-slide.from-right { transform: translateX(100%); opacity: 1; z-index: 2; }
+  .carousel-slide.from-left { transform: translateX(-100%); opacity: 1; z-index: 2; }
+  .carousel-slide.to-left { transform: translateX(-100%); opacity: 1; z-index: 1; }
+  .carousel-slide.to-right { transform: translateX(100%); opacity: 1; z-index: 1; }
+  .carousel-slide::after { content: ''; position: absolute; inset: 0; background: rgba(8,28,27,0.8); backdrop-filter: blur(2px); }
   .carousel-caption { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 2; font-size: 0.52rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.45); white-space: nowrap; }
   .carousel-dots { position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 3; }
   .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; padding: 0; transition: background 0.3s, transform 0.3s; }
@@ -50,24 +73,51 @@
   .carousel-arrow { width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.25); background: rgba(0,0,0,0.2); color: rgba(255,255,255,0.7); cursor: pointer; display: flex; align-items: center; justify-content: center; pointer-events: all; transition: all 0.3s; }
   .carousel-arrow:hover { border-color: var(--gold); color: var(--gold); }
   .carousel-arrow svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
-  #hero { min-height: 100vh; background: var(--teal-dark); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-  .hero-bg { display: none; }
-  .hero-grid { display: none; }
-  .hero-inner { position: relative; z-index: 2; max-width: 900px; text-align: center; padding: 40px; }
+  #hero { min-height: 100vh; background: var(--teal-dark); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; perspective: 1200px; }
+  .hero-tech-layer { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+  .hero-grid-floor {
+    position: absolute; left: -20%; right: -20%; bottom: -35%; height: 70%;
+    background-image:
+      linear-gradient(rgba(201,169,110,0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,169,110,0.12) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: rotateX(68deg);
+    transform-origin: center top;
+    mask-image: linear-gradient(to top, rgba(0,0,0,0.55), transparent 85%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.55), transparent 85%);
+    animation: gridDrift 22s linear infinite;
+  }
+  .hero-orb {
+    position: absolute; width: 280px; height: 280px; border-radius: 50%;
+    border: 1px solid rgba(201,169,110,0.22);
+    top: 18%; right: 8%;
+    transform-style: preserve-3d;
+    animation: orbFloat 14s ease-in-out infinite;
+  }
+  .hero-orb::before, .hero-orb::after {
+    content: ''; position: absolute; inset: 18%; border-radius: 50%;
+    border: 1px solid rgba(46,140,137,0.35);
+  }
+  .hero-orb::after { inset: 36%; border-color: rgba(201,169,110,0.18); animation: orbSpin 18s linear infinite; }
+  .hero-orb-2 {
+    position: absolute; width: 160px; height: 160px; border-radius: 50%;
+    border: 1px dashed rgba(255,255,255,0.12);
+    bottom: 22%; left: 7%;
+    animation: orbFloat 11s ease-in-out infinite reverse;
+  }
+  .hero-inner { position: relative; z-index: 2; max-width: 900px; text-align: center; padding: 40px; transform-style: preserve-3d; transition: transform 0.35s ease-out; }
   .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 30px; opacity: 0; animation: fadeUp 0.8s ease 0.3s forwards; }
   .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 7vw, 6.5rem); font-weight: 300; line-height: 1.05; color: var(--white); letter-spacing: 0.04em; opacity: 0; animation: fadeUp 0.9s ease 0.5s forwards; }
   .hero-title em { font-style: italic; color: var(--gold-light); }
   .hero-rule { width: 60px; height: 1px; background: var(--gold); margin: 36px auto; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
   .hero-sub { font-size: 0.88rem; line-height: 2; letter-spacing: 0.08em; color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto; opacity: 0; animation: fadeUp 0.8s ease 1s forwards; }
   .hero-actions { display: flex; gap: 20px; justify-content: center; margin-top: 48px; opacity: 0; animation: fadeUp 0.8s ease 1.2s forwards; }
-  .btn-primary { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; background: var(--gold); color: var(--teal-dark); padding: 16px 36px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-  .btn-secondary { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.3); color: var(--white); padding: 16px 36px; text-decoration: none; transition: all 0.3s; }
-  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
-  .hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0; animation: fadeIn 1s ease 2s forwards; }
-  .hero-scroll span { font-size: 0.5rem; letter-spacing: 0.3em; color: rgba(255,255,255,0.4); }
-  .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease-in-out infinite; }
-
+  .btn-primary { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; background: var(--gold); color: var(--teal-dark); padding: 16px 36px; text-decoration: none; font-weight: 600; transition: all 0.3s; position: relative; overflow: hidden; }
+  .btn-primary::after { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%); transform: translateX(-120%); transition: none; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,169,110,0.25); }
+  .btn-primary:hover::after { animation: btnShine 0.7s ease; }
+  .btn-secondary { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.3); color: var(--white); padding: 16px 36px; text-decoration: none; transition: all 0.3s; backdrop-filter: blur(6px); }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); box-shadow: 0 0 24px rgba(201,169,110,0.15); }
   /* SHARED */
   .section-label { font-size: 0.55rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
   .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 300; line-height: 1.15; color: var(--teal-dark); }
@@ -98,6 +148,22 @@
   #philosophy .section-label { color: var(--gold-light); }
   #philosophy .section-title { color: var(--white); }
   .philosophy-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+  .philosophy-geo {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
+  }
+  .philosophy-ring {
+    position: absolute; border: 1px solid rgba(201,169,110,0.18); border-radius: 50%;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    animation: ringPulse 8s ease-in-out infinite;
+  }
+  .philosophy-ring.r1 { width: min(70vw, 640px); height: min(70vw, 640px); }
+  .philosophy-ring.r2 { width: min(50vw, 440px); height: min(50vw, 440px); animation-delay: -2.5s; border-style: dashed; border-color: rgba(46,140,137,0.3); }
   .philosophy-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 3vw, 2.6rem); font-style: italic; font-weight: 300; line-height: 1.5; color: rgba(255,255,255,0.85); margin: 40px 0; }
   .philosophy-quote::before { content: '\201C'; color: var(--gold); font-size: 5rem; line-height: 0; vertical-align: -1.5rem; margin-right: 8px; }
   .philosophy-quote::after { content: '\201D'; color: var(--gold); font-size: 5rem; line-height: 0; vertical-align: -1.5rem; margin-left: 8px; }
@@ -196,8 +262,15 @@
   /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-  /* reveal animations removed for stability */
+  @keyframes gridDrift { from { background-position: 0 0; } to { background-position: 0 60px; } }
+  @keyframes orbFloat { 0%, 100% { transform: translateY(0) rotateX(12deg) rotateY(-8deg); } 50% { transform: translateY(-18px) rotateX(18deg) rotateY(10deg); } }
+  @keyframes orbSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes ringPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.55; } 50% { transform: translate(-50%, -50%) scale(1.04); opacity: 1; } }
+  @keyframes btnShine { from { transform: translateX(-120%); } to { transform: translateX(120%); } }
+  @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+  .reveal { opacity: 0; transform: translateY(40px) rotateX(8deg); transform-origin: center top; transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0) rotateX(0); }
 
   /* PORTFOLIO */
   #portfolio { background: var(--teal-dark); padding: 120px 60px; position: relative; overflow: hidden; }
@@ -210,22 +283,33 @@
   .portfolio-header-left p { font-size: 0.82rem; line-height: 2; color: rgba(255,255,255,0.55); max-width: 500px; margin-top: 16px; }
   .portfolio-filters { display: flex; gap: 10px; flex-wrap: wrap; }
   .pf-btn { font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 9px 18px; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.45); background: transparent; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat', sans-serif; }
-  .pf-btn:hover, .pf-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(201,169,110,0.06); }
+  .pf-btn:hover, .pf-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(201,169,110,0.06); box-shadow: 0 0 20px rgba(201,169,110,0.08); }
 
   /* Portfolio grid */
   .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.06); }
-  .portfolio-card { background: rgba(15,61,59,0.6); padding: 40px 36px; position: relative; overflow: hidden; transition: background 0.4s; cursor: default; backdrop-filter: blur(4px); }
-  .portfolio-card:hover { background: rgba(34,112,110,0.35); }
+  .portfolio-card {
+    background: rgba(15,61,59,0.6); padding: 40px 36px; position: relative; overflow: hidden;
+    transition: background 0.4s, box-shadow 0.35s;
+    cursor: default; backdrop-filter: blur(4px);
+  }
+  .portfolio-card:hover { background: rgba(34,112,110,0.4); box-shadow: 0 24px 50px rgba(0,0,0,0.35), 0 0 0 1px rgba(201,169,110,0.12); }
   .portfolio-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
   .portfolio-card:hover::before { transform: scaleX(1); }
-  .pc-tag { display: inline-block; font-size: 0.48rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,169,110,0.35); padding: 4px 10px; margin-bottom: 24px; }
-  .pc-logo-area { width: 56px; height: 56px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; transition: border-color 0.3s; }
-  .portfolio-card:hover .pc-logo-area { border-color: rgba(201,169,110,0.4); }
-  .pc-logo-area span { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; }
-  .pc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; color: var(--white); margin-bottom: 10px; line-height: 1.1; }
-  .pc-sector { font-size: 0.6rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 18px; }
-  .pc-desc { font-size: 0.74rem; line-height: 1.85; color: rgba(255,255,255,0.5); }
-  .pc-meta { display: flex; gap: 20px; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.07); flex-wrap: wrap; }
+  .portfolio-card::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.4s ease;
+    background: radial-gradient(circle 180px at var(--mx, 50%) var(--my, 50%), rgba(201,169,110,0.08), transparent 70%);
+  }
+  .portfolio-card:hover::after { opacity: 1; }
+  .pc-tag { display: inline-block; font-size: 0.48rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,169,110,0.35); padding: 4px 10px; margin-bottom: 24px; position: relative; z-index: 1; }
+  .pc-logo-area { width: 148px; height: 64px; background: var(--cream); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; padding: 12px 14px; transition: border-color 0.3s, box-shadow 0.3s; position: relative; z-index: 1; }
+  .portfolio-card:hover .pc-logo-area { border-color: rgba(201,169,110,0.45); box-shadow: 0 0 0 1px rgba(201,169,110,0.15); }
+  .pc-logo-area img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+  .pc-logo-area.pc-logo-mark { width: 64px; padding: 10px; }
+  .pc-logo-area.pc-logo-mark img { max-width: 42px; max-height: 42px; }
+  .pc-name { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; color: var(--white); margin-bottom: 10px; line-height: 1.1; position: relative; z-index: 1; }
+  .pc-sector { font-size: 0.6rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 18px; position: relative; z-index: 1; }
+  .pc-desc { font-size: 0.74rem; line-height: 1.85; color: rgba(255,255,255,0.5); position: relative; z-index: 1; }
+  .pc-meta { display: flex; gap: 20px; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.07); flex-wrap: wrap; position: relative; z-index: 1; }
   .pc-meta-item .pc-meta-label { font-size: 0.48rem; letter-spacing: 0.25em; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 4px; }
   .pc-meta-item .pc-meta-value { font-size: 0.72rem; color: rgba(255,255,255,0.6); }
 
@@ -234,6 +318,11 @@
   .portfolio-card.placeholder:hover { background: rgba(255,255,255,0.02); opacity: 0.55; }
   .pc-placeholder-icon { width: 40px; height: 40px; border: 1px dashed rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
   .pc-placeholder-icon svg { width: 16px; height: 16px; stroke: rgba(255,255,255,0.3); fill: none; stroke-width: 1.5; }
+
+  .office-card { background: var(--white); position: relative; overflow: hidden; transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s; transform-style: preserve-3d; }
+  .office-card:hover { transform: translateY(-8px) rotateX(2deg); box-shadow: 0 20px 40px rgba(15,61,59,0.12); }
+  .office-map-img { position: absolute; inset: -15%; width: 130%; height: 130%; background-size: cover; background-position: center; filter: grayscale(100%); transition: transform 0.7s ease, filter 0.5s; }
+  .office-card:hover .office-map-img { transform: scale(1.08); filter: grayscale(60%); }
 
   /* RESPONSIVE */
   @media (max-width: 1024px) {
@@ -245,6 +334,11 @@
     .offices-grid { grid-template-columns: 1fr; }
     footer { padding: 40px 30px; }
     #philosophy, #services, #partners, #offices { padding: 80px 30px; }
+    .hero-orb, .hero-orb-2, .hero-grid-floor { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-grid-floor, .hero-orb, .hero-orb-2, .philosophy-ring { animation: none !important; }
+    .reveal { opacity: 1; transform: none; }
   }
 </style>
 </head>
@@ -298,6 +392,12 @@
     </div>
   </div>
 
+  <div class="hero-tech-layer" aria-hidden="true">
+    <div class="hero-grid-floor"></div>
+    <div class="hero-orb"></div>
+    <div class="hero-orb-2"></div>
+  </div>
+
   <!-- ARROWS -->
   <div class="carousel-arrows">
     <button class="carousel-arrow" onclick="moveCarousel(-1)" aria-label="Previous">
@@ -320,7 +420,7 @@
   </div>
 
   <!-- HERO CONTENT -->
-  <div class="hero-inner">
+  <div class="hero-inner" id="heroInner">
     <p class="hero-eyebrow">Evergreen Fund and Family Office</p>
     <h1 class="hero-title">Seeking the <em>Relentless</em></h1>
     <div class="hero-rule"></div>
@@ -331,14 +431,15 @@
     </div>
   </div>
 
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-  </div>
 </section>
 
 <!-- PHILOSOPHY -->
 <section id="philosophy">
-  <div class="philosophy-inner">
+  <div class="philosophy-geo" aria-hidden="true">
+    <div class="philosophy-ring r1"></div>
+    <div class="philosophy-ring r2"></div>
+  </div>
+  <div class="philosophy-inner reveal">
     <span class="section-label">Our Philosophy</span>
     <h2 class="section-title">Advancing <em>Purpose</em><br>through Agile Capital</h2>
     <div class="rule" style="margin:28px auto;"></div>
@@ -352,7 +453,7 @@
 <section id="portfolio">
   <div class="portfolio-inner">
 
-    <div class="portfolio-header">
+    <div class="portfolio-header reveal">
       <div class="portfolio-header-left">
         <span class="section-label">Investments &amp; Affiliations</span>
         <h2 class="section-title">Our <em>Portfolio</em></h2>
@@ -371,9 +472,9 @@
     <div class="portfolio-grid" id="portfolioGrid">
 
       <!-- CARD 1 — Nutrabolt -->
-      <div class="portfolio-card" data-category="private-equity">
+      <div class="portfolio-card reveal" data-category="private-equity">
         <span class="pc-tag">Private Equity</span>
-        <div class="pc-logo-area"><span>NB</span></div>
+        <div class="pc-logo-area"><img src="images/logos/nutrabolt.png" alt="Nutrabolt logo"></div>
         <div class="pc-name">Nutrabolt</div>
         <div class="pc-sector">Sports Nutrition &amp; Wellness</div>
         <p class="pc-desc">Leading nutritional life sciences company behind the Cellucor and Extend brands. Products sold in 50,000+ retail locations across 120+ countries including Costco, Walmart, and Amazon.</p>
@@ -384,9 +485,9 @@
       </div>
 
       <!-- CARD 2 — Arrive Logistics -->
-      <div class="portfolio-card" data-category="venture">
+      <div class="portfolio-card reveal" data-category="venture">
         <span class="pc-tag">Venture</span>
-        <div class="pc-logo-area"><span>AL</span></div>
+        <div class="pc-logo-area"><img src="images/logos/arrive.png" alt="Arrive Logistics logo"></div>
         <div class="pc-name">Arrive Logistics</div>
         <div class="pc-sector">Freight &amp; Logistics Technology</div>
         <p class="pc-desc">Technology-driven freight brokerage and logistics platform. One of the fastest-growing logistics companies in the United States.</p>
@@ -399,9 +500,9 @@
 
 
       <!-- CARD 4 — iCAT Logistics -->
-      <div class="portfolio-card" data-category="private-equity">
+      <div class="portfolio-card reveal" data-category="private-equity">
         <span class="pc-tag">Private Equity</span>
-        <div class="pc-logo-area"><span>iCAT</span></div>
+        <div class="pc-logo-area"><img src="images/logos/icat.png" alt="iCAT Logistics logo"></div>
         <div class="pc-name">iCAT Logistics</div>
         <div class="pc-sector">Customized Freight &amp; Global Logistics</div>
         <p class="pc-desc">Specialized freight forwarding and secure global logistics company serving live events, luxury, technology, defense &amp; aerospace, and financial institutions worldwide.</p>
@@ -412,9 +513,9 @@
       </div>
 
       <!-- CARD 5 — Lacure -->
-      <div class="portfolio-card" data-category="private-equity">
+      <div class="portfolio-card reveal" data-category="private-equity">
         <span class="pc-tag">Private Equity</span>
-        <div class="pc-logo-area"><span>LC</span></div>
+        <div class="pc-logo-area"><img src="images/logos/lacure.svg" alt="Lacure logo"></div>
         <div class="pc-name">Lacure</div>
         <div class="pc-sector">Luxury Villa &amp; Vacation Rentals</div>
         <p class="pc-desc">Premier luxury villa collection offering once-in-a-lifetime personalized getaways. Over 45 years of experience with properties meticulously vetted across top global destinations including Santorini, St. Tropez, Tuscany, and the Caribbean.</p>
@@ -425,9 +526,9 @@
       </div>
 
       <!-- CARD 6 — Middlehouse -->
-      <div class="portfolio-card" data-category="other">
+      <div class="portfolio-card reveal" data-category="other">
         <span class="pc-tag">Other</span>
-        <div class="pc-logo-area"><span>MH</span></div>
+        <div class="pc-logo-area"><img src="images/logos/middlehouse.png" alt="Middlehouse logo"></div>
         <div class="pc-name">Middlehouse</div>
         <div class="pc-sector">Hospitality &amp; Venue Management</div>
         <p class="pc-desc">Hospitality platform investing in industry pioneers who own and run world-class venues. Portfolio includes Bar Snack, Here Nor There, In Plain Sight, Kagano, and Mrs. Jones.</p>
@@ -438,9 +539,9 @@
       </div>
 
       <!-- CARD 7 — Truckbays -->
-      <div class="portfolio-card" data-category="venture">
+      <div class="portfolio-card reveal" data-category="venture">
         <span class="pc-tag">Venture</span>
-        <div class="pc-logo-area"><span>TB</span></div>
+        <div class="pc-logo-area pc-logo-mark"><img src="images/logos/truckbays.svg" alt="Truckbays logo"></div>
         <div class="pc-name">Truckbays</div>
         <div class="pc-sector">Trucking &amp; Logistics Services</div>
         <p class="pc-desc">Service and infrastructure platform supporting the commercial trucking industry with maintenance bays and fleet support solutions.</p>
@@ -457,7 +558,7 @@
 <!-- OFFICES -->
 <section id="offices">
   <div class="offices-inner">
-    <div class="offices-header">
+    <div class="offices-header reveal">
       <span class="section-label">Where We Operate</span>
       <h2 class="section-title">Our <em>Offices</em></h2>
       <div class="rule"></div>
@@ -465,7 +566,7 @@
     <div class="offices-grid">
 
       <!-- Austin -->
-      <div class="office-card">
+      <div class="office-card reveal">
         <div class="office-visual">
           <div class="office-map-img" style="background-image: url('images/map-austin.png'); background-position: center 48%;"></div>
           <div class="office-tint"></div>
@@ -478,7 +579,7 @@
       </div>
 
       <!-- Dallas -->
-      <div class="office-card">
+      <div class="office-card reveal">
         <div class="office-visual">
           <div class="office-map-img" style="background-image: url('images/map-dallas.png'); background-position: center 48%;"></div>
           <div class="office-tint"></div>
@@ -491,7 +592,7 @@
       </div>
 
       <!-- Houston -->
-      <div class="office-card">
+      <div class="office-card reveal">
         <div class="office-visual">
           <div class="office-map-img" style="background-image: url('images/map-houston.png'); background-position: center 47%;"></div>
           <div class="office-tint"></div>
@@ -514,7 +615,7 @@
     <div class="fs">EQUITIES</div>
   </div>
   <div class="footer-center">
-    <p>&copy; 2025 Mighty Equities. All rights reserved.</p>
+    <p>&copy; 2026 Mighty Equities. All rights reserved.</p>
     <p style="margin-top:4px;">Private Family Office &mdash; Not a Registered Investment Adviser</p>
   </div>
   <ul class="footer-links">
@@ -530,23 +631,68 @@
   var slides = document.querySelectorAll('.carousel-slide');
   var dots = document.querySelectorAll('.carousel-dot');
   var autoplayTimer;
+  var isAnimating = false;
+  var reduceMotionCarousel = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function goToSlide(n) {
-    slides[currentSlide].classList.remove('active');
+  function clearSlideMotion(el) {
+    el.classList.remove('from-left', 'from-right', 'to-left', 'to-right');
+  }
+
+  function goToSlide(n, dir) {
+    var next = (n + slides.length) % slides.length;
+    if (next === currentSlide || isAnimating) return;
+
+    if (typeof dir !== 'number') {
+      dir = next > currentSlide ? 1 : -1;
+    }
+
+    var outgoing = slides[currentSlide];
+    var incoming = slides[next];
+
     dots[currentSlide].classList.remove('active');
-    currentSlide = (n + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
+    dots[next].classList.add('active');
+
+    if (reduceMotionCarousel) {
+      outgoing.classList.remove('active');
+      clearSlideMotion(outgoing);
+      clearSlideMotion(incoming);
+      incoming.classList.add('active');
+      currentSlide = next;
+      return;
+    }
+
+    isAnimating = true;
+    clearSlideMotion(outgoing);
+    clearSlideMotion(incoming);
+
+    // Position incoming off-screen in the swipe direction
+    incoming.style.transition = 'none';
+    incoming.classList.add(dir > 0 ? 'from-right' : 'from-left');
+    void incoming.offsetWidth;
+    incoming.style.transition = '';
+
+    outgoing.classList.remove('active');
+    outgoing.classList.add(dir > 0 ? 'to-left' : 'to-right');
+
+    incoming.classList.remove('from-right', 'from-left');
+    incoming.classList.add('active');
+
+    currentSlide = next;
+
+    window.setTimeout(function() {
+      clearSlideMotion(outgoing);
+      isAnimating = false;
+    }, 920);
   }
 
   function moveCarousel(dir) {
     clearInterval(autoplayTimer);
-    goToSlide(currentSlide + dir);
+    goToSlide(currentSlide + dir, dir);
     startAutoplay();
   }
 
   function startAutoplay() {
-    autoplayTimer = setInterval(function() { goToSlide(currentSlide + 1); }, 10000);
+    autoplayTimer = setInterval(function() { goToSlide(currentSlide + 1, 1); }, 10000);
   }
 
   startAutoplay();
@@ -571,7 +717,55 @@
     });
   }
 
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Hero pointer parallax
+  (function() {
+    if (reduceMotion) return;
+    var hero = document.getElementById('hero');
+    var heroInner = document.getElementById('heroInner');
+    if (!hero || !heroInner) return;
+    hero.addEventListener('mousemove', function(e) {
+      var rect = hero.getBoundingClientRect();
+      var nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      var ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      heroInner.style.transform = 'rotateY(' + (nx * 4) + 'deg) rotateX(' + (-ny * 3) + 'deg) translateZ(20px)';
+    });
+    hero.addEventListener('mouseleave', function() {
+      heroInner.style.transform = '';
+    });
+  })();
+
+  // Subtle portfolio spotlight follow
+  (function() {
+    if (reduceMotion) return;
+    document.querySelectorAll('.portfolio-card').forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+        card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100) + '%');
+      });
+    });
+  })();
+
+  // Scroll reveal
+  (function() {
+    var nodes = document.querySelectorAll('.reveal');
+    if (!nodes.length) return;
+    if (reduceMotion) {
+      nodes.forEach(function(n) { n.classList.add('visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    nodes.forEach(function(n) { io.observe(n); });
+  })();
 </script>
 </body>
 </html>
