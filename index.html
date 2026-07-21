@@ -64,7 +64,7 @@
   .carousel-slide.from-left { transform: translateX(-100%); opacity: 1; z-index: 2; }
   .carousel-slide.to-left { transform: translateX(-100%); opacity: 1; z-index: 1; }
   .carousel-slide.to-right { transform: translateX(100%); opacity: 1; z-index: 1; }
-  .carousel-slide::after { content: ''; position: absolute; inset: 0; background: rgba(8,28,27,0.8); backdrop-filter: blur(2px); }
+  .carousel-slide::after { content: ''; position: absolute; inset: 0; background: rgba(8,28,27,0.55); }
   .carousel-caption { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 2; font-size: 0.52rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.45); white-space: nowrap; }
   .carousel-dots { position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 3; }
   .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; padding: 0; transition: background 0.3s, transform 0.3s; }
@@ -143,35 +143,55 @@
   .pillar p { font-size: 0.72rem; color: var(--text-light); line-height: 1.8; }
 
   /* PHILOSOPHY */
-  #philosophy { background: var(--teal-dark); color: var(--white); padding: 120px 60px; text-align: center; position: relative; overflow: hidden; }
-  #philosophy::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(46,140,137,0.2), transparent); }
+  #philosophy { background: var(--teal-dark); color: var(--white); padding: 120px 60px; position: relative; overflow: hidden; }
+  #philosophy::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 60% at 70% 40%, rgba(46,140,137,0.22), transparent 70%), radial-gradient(ellipse 40% 50% at 15% 80%, rgba(201,169,110,0.06), transparent 60%); }
   #philosophy .section-label { color: var(--gold-light); }
   #philosophy .section-title { color: var(--white); }
-  .philosophy-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
   .philosophy-geo {
-    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.45;
     background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
-    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 55% 50% at 75% 45%, black, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 55% 50% at 75% 45%, black, transparent 75%);
   }
   .philosophy-ring {
-    position: absolute; border: 1px solid rgba(201,169,110,0.18); border-radius: 50%;
-    top: 50%; left: 50%; transform: translate(-50%, -50%);
-    animation: ringPulse 8s ease-in-out infinite;
+    position: absolute; border: 1px solid rgba(201,169,110,0.12); border-radius: 50%;
+    top: 42%; right: 8%; transform: translate(20%, -50%);
+    animation: ringPulse 10s ease-in-out infinite;
   }
-  .philosophy-ring.r1 { width: min(70vw, 640px); height: min(70vw, 640px); }
-  .philosophy-ring.r2 { width: min(50vw, 440px); height: min(50vw, 440px); animation-delay: -2.5s; border-style: dashed; border-color: rgba(46,140,137,0.3); }
-  .philosophy-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 3vw, 2.6rem); font-style: italic; font-weight: 300; line-height: 1.5; color: rgba(255,255,255,0.85); margin: 40px 0; }
-  .philosophy-quote::before { content: '\201C'; color: var(--gold); font-size: 5rem; line-height: 0; vertical-align: -1.5rem; margin-right: 8px; }
-  .philosophy-quote::after { content: '\201D'; color: var(--gold); font-size: 5rem; line-height: 0; vertical-align: -1.5rem; margin-left: 8px; }
-  .philosophy-body { font-size: 0.92rem; line-height: 2.1; color: rgba(255,255,255,0.6); margin-top: 30px; }
+  .philosophy-ring.r1 { width: min(42vw, 420px); height: min(42vw, 420px); }
+  .philosophy-ring.r2 { width: min(28vw, 280px); height: min(28vw, 280px); top: 58%; right: 18%; animation-delay: -3s; border-style: dashed; border-color: rgba(46,140,137,0.25); transform: none; }
+  .philosophy-inner {
+    position: relative; z-index: 2; max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.25fr); gap: 64px 80px; align-items: start;
+  }
+  .philosophy-intro { padding-top: 8px; }
+  .philosophy-intro .rule { margin: 28px 0 0; }
+  .philosophy-copy { max-width: 560px; }
+  .philosophy-quote {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(1.55rem, 2.6vw, 2.15rem); font-style: italic; font-weight: 300;
+    line-height: 1.45; color: rgba(255,255,255,0.9); margin: 0 0 36px; padding: 8px 0 8px 28px;
+    border-left: 1px solid var(--gold); text-align: left;
+  }
+  .philosophy-quote::before, .philosophy-quote::after { content: none; }
+  .philosophy-body {
+    font-size: 0.82rem; line-height: 1.95; color: rgba(255,255,255,0.55); margin: 0; text-align: left;
+  }
+  .philosophy-body + .philosophy-body {
+    margin-top: 22px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.08);
+  }
   .philosophy-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); margin-top: 80px; }
   .stat-item { background: var(--teal-dark); padding: 50px 30px; text-align: center; }
   .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--gold); display: block; }
   .stat-label { font-size: 0.55rem; letter-spacing: 0.3em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-top: 8px; display: block; }
+
+  @media (max-width: 900px) {
+    .philosophy-inner { grid-template-columns: 1fr; gap: 40px; }
+    .philosophy-copy { max-width: 100%; }
+    .philosophy-ring { opacity: 0.35; }
+  }
 
   /* SERVICES */
   #services { background: var(--cream); padding: 120px 60px; }
@@ -265,7 +285,7 @@
   @keyframes gridDrift { from { background-position: 0 0; } to { background-position: 0 60px; } }
   @keyframes orbFloat { 0%, 100% { transform: translateY(0) rotateX(12deg) rotateY(-8deg); } 50% { transform: translateY(-18px) rotateX(18deg) rotateY(10deg); } }
   @keyframes orbSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  @keyframes ringPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.55; } 50% { transform: translate(-50%, -50%) scale(1.04); opacity: 1; } }
+  @keyframes ringPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.85; } }
   @keyframes btnShine { from { transform: translateX(-120%); } to { transform: translateX(120%); } }
   @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
@@ -362,33 +382,25 @@
 
   <!-- CAROUSEL SLIDES -->
   <div class="carousel" id="carousel">
-    <!-- Slide 1 — Bar Snack (Middlehouse) -->
-    <div class="carousel-slide active" style="background-image: url('images/barsnack.png');">
-      <div class="carousel-caption">Middlehouse &mdash; Bar Snack</div>
-    </div>
-    <!-- Slide 2 — Lacure: luxury villa -->
-    <div class="carousel-slide" style="background-image: url('images/lacure.png');">
+    <!-- Slide 1 — Lacure -->
+    <div class="carousel-slide active" style="background-image: url('images/lacure.png');">
       <div class="carousel-caption">Lacure &mdash; Luxury Villas &amp; Private Escapes</div>
     </div>
-    <!-- Slide 3 — Arrive Logistics -->
+    <!-- Slide 2 — Arrive Logistics -->
     <div class="carousel-slide" style="background-image: url('images/arrive.png');">
       <div class="carousel-caption">Arrive Logistics &mdash; Freight &amp; Technology</div>
     </div>
-    <!-- Slide 4 — iCAT: logistics -->
-    <div class="carousel-slide" style="background-image: url('images/icat.png');">
-      <div class="carousel-caption">iCAT Logistics &mdash; Customized Global Freight</div>
-    </div>
-    <!-- Slide 4 — Nutrabolt: gym hallway -->
+    <!-- Slide 3 — Nutrabolt -->
     <div class="carousel-slide" style="background-image: url('images/nutrabolt-2.png');">
       <div class="carousel-caption">Nutrabolt &mdash; Sports Nutrition &amp; Wellness</div>
     </div>
-    <!-- Slide 5 — Nutrabolt: aerial campus -->
-    <div class="carousel-slide" style="background-image: url('images/nutrabolt-3.png');">
-      <div class="carousel-caption">Nutrabolt &mdash; Sports Nutrition &amp; Wellness</div>
+    <!-- Slide 4 — iCAT -->
+    <div class="carousel-slide" style="background-image: url('images/icat.png');">
+      <div class="carousel-caption">iCAT Logistics &mdash; Customized Global Freight</div>
     </div>
-    <!-- Slide 6 — Family office / skyline -->
-    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1468818419740-fb0f08ead8a2?w=1800&q=80');">
-      <div class="carousel-caption">Mighty Equities</div>
+    <!-- Slide 5 — Middlehouse -->
+    <div class="carousel-slide" style="background-image: url('images/barsnack.png');">
+      <div class="carousel-caption">Middlehouse &mdash; Bar Snack</div>
     </div>
   </div>
 
@@ -415,8 +427,6 @@
     <button class="carousel-dot" onclick="goToSlide(2)"></button>
     <button class="carousel-dot" onclick="goToSlide(3)"></button>
     <button class="carousel-dot" onclick="goToSlide(4)"></button>
-    <button class="carousel-dot" onclick="goToSlide(5)"></button>
-    <button class="carousel-dot" onclick="goToSlide(6)"></button>
   </div>
 
   <!-- HERO CONTENT -->
@@ -440,12 +450,16 @@
     <div class="philosophy-ring r2"></div>
   </div>
   <div class="philosophy-inner reveal">
-    <span class="section-label">Our Philosophy</span>
-    <h2 class="section-title">Advancing <em>Purpose</em><br>through Agile Capital</h2>
-    <div class="rule" style="margin:28px auto;"></div>
-    <blockquote class="philosophy-quote">We view capital as a bridge &mdash; the practical span between the value already secured and the future now constructing.</blockquote>
-    <p class="philosophy-body">Capital fuels ideas, but strong discipline toward a purposeful strategy, coupled with a relentless focus on solving complex problems, drives the creation of enduring value.</p>
-    <p class="philosophy-body" style="margin-top:20px;">Mighty Equities is an Austin-based evergreen fund and family office. We partner with like-minded family capital to pursue direct investments, specifically backing dogged founders across various asset classes and stages.</p>
+    <div class="philosophy-intro">
+      <span class="section-label">Our Philosophy</span>
+      <h2 class="section-title">Advancing <em>Purpose</em><br>through Agile Capital</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="philosophy-copy">
+      <blockquote class="philosophy-quote">We view capital as a bridge &mdash; the practical span between the value already secured and the future now constructing.</blockquote>
+      <p class="philosophy-body">Capital fuels ideas, but strong discipline toward a purposeful strategy, coupled with a relentless focus on solving complex problems, drives the creation of enduring value.</p>
+      <p class="philosophy-body">Mighty Equities is an Austin-based evergreen fund and family office. We partner with like-minded family capital to pursue direct investments, specifically backing dogged founders across various asset classes and stages of growth. Our approach eliminates the friction of traditional fund cycles, allowing us to focus entirely on sustained, long-term growth.</p>
+    </div>
   </div>
 </section>
 
