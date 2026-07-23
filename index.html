@@ -261,11 +261,9 @@
   .btn-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
 
   /* FOOTER */
-  footer { background: #0a2a29; padding: 50px 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-  .footer-logo .wm { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; letter-spacing: 0.25em; color: var(--white); font-weight: 300; line-height: 1; text-transform: uppercase; }
-  .footer-logo .fs { font-size: 0.48rem; letter-spacing: 0.55em; color: var(--gold); text-transform: uppercase; margin-top: 5px; text-align: center; }
+  footer { background: #0a2a29; padding: 50px 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 24px; }
   .footer-center { font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); text-align: center; }
-  .footer-links { display: flex; gap: 30px; list-style: none; }
+  .footer-links { display: flex; gap: 30px; list-style: none; justify-content: center; flex-wrap: wrap; }
   .footer-links a { font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s; }
   .footer-links a:hover { color: var(--gold); }
 
@@ -343,8 +341,16 @@
     .services-grid, .philosophy-stats, .portfolio-grid { grid-template-columns: 1fr; }
     .offices-grid { grid-template-columns: 1fr; }
     footer { padding: 40px 30px; }
-    #philosophy, #services, #partners, #offices { padding: 80px 30px; }
+    #about, #philosophy, #services, #partners, #offices, #contact, #portfolio { padding: 80px 30px; }
     .hero-grid-floor { display: none; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 20px 20px; }
+    nav.scrolled { padding: 14px 20px; }
+    #about, #philosophy, #services, #partners, #offices, #contact, #portfolio { padding: 64px 20px; }
+    #hero .hero-inner { padding: 40px 20px; }
+    .portfolio-card { padding: 32px 22px; }
+    footer { padding: 36px 20px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-grid-floor, .philosophy-ring { animation: none !important; }
@@ -625,10 +631,6 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">
-    <div class="wm">MIGHTY</div>
-    <div class="fs">EQUITIES</div>
-  </div>
   <div class="footer-center">
     <p>&copy; 2026 Mighty Equities. All rights reserved.</p>
     <p style="margin-top:4px;">Private Family Office &mdash; Not a Registered Investment Adviser</p>
